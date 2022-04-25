@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+<!-- db설정 -->
+<bean id="ds" class="org.springframework.jndi.JndiObjectFactoryBean">
+<property name="jndiName">
+<value>jdbc/spring</value>
+</property>
+<property name="resourceRef" value="true"/>
+</bean>
+
+<bean id="template" class="org.springframework.jdbc.core.JdbcTemplate">
+<property name="dataSource" ref="ds"></property>
+</bean>
+
+<bean id="dao" class="com.person.model.PersonDAOImpl">
+<property name="template" ref="template"></property>
+</bean>
+
+<bean name="/personForm.sp" class="com.person.controller.PersonForm"></bean>
+
+<bean name="/personInsert.sp" class="com.person.controller.PersonInsert">
+<property name="dao" ref="dao"></property>
+</bean>
+
+<bean name="/personList.sp" class="com.person.controller.PersonList"> 
+<property name="dao" ref="dao"></property> </bean>
+
+<bean name="/personView.sp" class="com.person.controller.PersonView">
+<property name="dao" ref="dao"></property>
+</bean>
+
+<bean name="/personDelete.sp" class="com.person.controller.PersonDelete">
+<property name="dao" ref="dao"></property>
+</bean>
+
+<bean name="/personUpdateForm.sp" class="com.person.controller.PersonUpdateForm">
+<property name="dao" ref="dao"></property>
+</bean>
+
+<bean name="/personUpdate.sp" class="com.person.controller.PersonUpdate">
+<property name="dao" ref="dao"></property>
+</bean>
+
+<bean name="/test.sp" class="com.test.TestController"></bean>
+</beans>

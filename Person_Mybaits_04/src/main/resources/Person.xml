@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ <mapper namespace="com.myspring.Person">
+ 
+ <sql id="search">
+	 <where>
+	 <if test="word!=null and field =='name'">
+	 	name like CONCAT('%',#{word},'%')
+	 </if>
+	  <if test="word!=null and field =='job'">
+	 	job like CONCAT('%',#{word},'%')
+	 </if>
+	 </where>
+ </sql>
+ 
+ <insert id="insertPerson" parameterType="com.myspring.vo.PersonVO">
+ insert into person values(#{id},#{name},#{password},#{gender},#{job})
+ </insert>
+ 
+ <select id="allPerson" resultType="com.myspring.vo.PersonVO">
+ select * from person 
+ </select>
+ 
+ <select id="allCount" resultType="int">
+ select count(*) from person
+ </select>
+ 
+ <select id="viewPerson" parameterType="String" resultType="com.myspring.vo.PersonVO">
+ select * from person where id = #{id}
+ </select>
+ 
+ <update id="updatePerson" parameterType="com.myspring.vo.PersonVO">
+ update person set name=#{name},job=#{job},password=#{password},gender=#{gender} where id=#{id}
+ </update>
+ 
+ <delete id="deletePerson" parameterType="String" >
+ delete from person where id = #{id}
+ </delete>
+ 
+  <select id="listPerson" parameterType="java.util.Map" resultType="com.myspring.vo.PersonVO">
+ select * from person 
+ <include refid="search"/>
+ </select>
+ 
+ <select id="personCount" parameterType="java.util.Map" resultType="int">
+ select count(*) from person
+<include refid="search"/>
+ </select>
+ 
+ </mapper>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+ <mapper namespace="com.myguest.mapper.GuestMapper">
+ 
+ <sql id="search">
+	 <where>
+	 <if test="word!=null and field =='name'">
+	 	name like CONCAT('%',#{word},'%')
+	 </if>
+	  <if test="word!=null and field =='content'">
+	 	content like CONCAT('%',#{word},'%')
+	 </if>
+	 </where>
+ </sql>
+ 
+ <insert id="insertGuest" parameterType="com.myguest.model.GuestDTO">
+ insert into guest(name,content,grade,ipaddr) values(#{name},#{content},#{grade},#{ipaddr})
+ </insert>
+ 
+ <select id="listGuest" parameterType="java.util.Map" resultType="com.myguest.model.GuestDTO">
+ select * from guest
+ <include refid="search"/>
+ </select>
+ 
+  <select id="guestCount" parameterType="java.util.Map" resultType="int">
+ select count(*) from guest
+  <include refid="search"/>
+ </select>
+ 
+ <select id="viewGuest" parameterType="int" resultType="com.myguest.model.GuestDTO">
+ select * from guest where num = #{num}
+ </select>
+ 
+ <update id="updateGuest" parameterType="com.myguest.model.GuestDTO">
+ update guest set name=#{name},content=#{content},grade=#{grade} where num=#{num}
+ </update>
+ 
+ <delete id="deleteGuest" parameterType="int">
+ delete from guest where num = #{num}
+ </delete>
+ 
+ </mapper>

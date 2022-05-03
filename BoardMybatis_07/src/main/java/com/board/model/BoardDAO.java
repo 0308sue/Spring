@@ -13,6 +13,7 @@ public interface BoardDAO {
 	public void dao_update(BoardDTO board);
 	public void dao_delete(int num);
 	public int dao_getCount(HashMap<String, Object> hm);
+	public void dao_upReadCount(int num);
 	public void fileInsert(FileBoardDTO board);
 	public List<FileBoardDTO> fileList();
 }

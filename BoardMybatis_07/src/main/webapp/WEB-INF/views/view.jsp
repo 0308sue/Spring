@@ -28,11 +28,13 @@
 				readonly="readonly">${board.content}</textarea>
 		</div>
 
+<c:if test="${sessionScope.sMember.id==board.writer}">
+
 		<div class="form-group text-right">
 			<button type="button" class="btn btn-secondary" id="btnupdate">수정하기</button>
 			<button type="button" class="btn btn-danger" id="btndelete">삭제하기</button>
 		</div>
-
+</c:if>
 		<br>
 		<br>
 
@@ -60,7 +62,10 @@ var init = function(){
 				str += val.userid+" "
 				str += val.content+" "
 				str += val.regdate+" "
+				if("${sessionScope.sMember.id}"==val.userid){					
 				str += " <a href = javascript:fdel('"+val.cnum+"')>삭제</a><br/>"
+				}
+				str +="<br/>"
 			})
 			$("#replyResult").html(str);
 	}).fail(function(e) {
@@ -82,6 +87,12 @@ function fdel(cnum){
 }
 
 	$("#btnComment").click(function() {
+		if(${empty sessionScope.sMember}){
+			alert("로그인 하세요")
+			location.href="/app07/member/login"
+			return;
+		}
+		
 		if ($("#msg").val() == "") {
 			alert("댓글을 입력하세요")
 			return;

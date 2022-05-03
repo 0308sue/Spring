@@ -25,6 +25,7 @@ private BoardDAOImpl dao;
 
 	@Override
 	public BoardDTO findByNum(int num) {
+		dao.dao_upReadCount(num);
 		return dao.dao_findByNum(num);
 	}
 
@@ -47,14 +48,19 @@ private BoardDAOImpl dao;
 
 	@Override
 	public void fileInsert(FileBoardDTO board) {
-		// TODO Auto-generated method stub
+		dao.fileInsert(board);
 		
 	}
 
 	@Override
 	public List<FileBoardDTO> fileList() {
 		// TODO Auto-generated method stub
-		return null;
+		return dao.fileList();
+	}
+
+	@Override
+	public void upReadCount(int num) {
+				
 	}
 
 }

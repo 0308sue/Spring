@@ -8,7 +8,7 @@
 </div>
 
 <div class="container ">
-		<form action="insert" method="post" >
+		<form action="fileInsert" method="post" enctype="multipart/form-data">
 
 			<div class="form-group">
 				<label for="title">제목:</label> <input type="text"
@@ -17,9 +17,12 @@
 			</div>
 			
 			<div class="form-group">
-				<label for="pwd">글쓴이:</label> <input type="text"
-					class="form-control" id="writer" name="writer" placeholder="Enter writer"
-					readonly="readonly" >
+				<label for="writer">글쓴이:</label> <input type="text"
+					class="form-control" id="writer" name="writer" placeholder="Enter writer">
+			</div>
+			<div class="form-group">
+				<label for="upload">파일:</label> <input type="file"
+					class="form-control" id="upload" name="upload" placeholder="Enter File">
 			</div>
 			
 			<div class="form-group">
@@ -28,7 +31,7 @@
 			</div>
 			
 			<div class="form-group text-right">
-			<button class="btn btn-primary">글쓰기</button>
+			<button class="btn btn-primary">Submit</button>
 			</div>
 			
 		</form>

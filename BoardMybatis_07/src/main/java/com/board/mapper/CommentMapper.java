@@ -18,4 +18,7 @@ public interface CommentMapper {
 	
 	@Delete("delete from commentboard where cnum = #{cnum}")
 	public void delete(int cnum);
+	
+	@Select("select * from commentboard where cnum = #{cnum}")
+	public CommentDTO read(int cnum);
 }

@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -44,7 +45,10 @@ public class HomeController {
 	 */
 	
 	@GetMapping("insert")
-	public String insert() {
+	public String insert(HttpSession session) {
+		if(session.getAttribute("sMember")==null) {
+			return"member/login";
+		}
 		return "boardInsert";
 	}
 	
@@ -75,6 +79,7 @@ public class HomeController {
 		page.setField(field);
 		page.setWord(word);
 		model.addAttribute("p",page);
+		model.addAttribute("rowNo",count-((currentPage-1)*pageSize));
 		return "boardlist";
 	}
 	

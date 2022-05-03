@@ -24,7 +24,34 @@
     </li>
     <li class="nav-item">
       <a class="nav-link" href="/app07/insert">글쓰기</a>
-    </li>    
+    </li> 
+    <li class="nav-item">
+      <a class="nav-link" href="/app07/uploadForm">File</a>
+    </li>   
+    <li class="nav-item">
+      <a class="nav-link" href="/app07/fileList">FileBoard</a>
+    </li> 
+  </ul>
+  
+  <ul class="navbar-nav">
+<c:choose>
+<c:when test="${empty sessionScope.sMember }">
+ <li class="nav-item">
+      <a class="nav-link" href="/app07/member/join">회원가입</a>
+    </li> 
+     <li class="nav-item">
+      <a class="nav-link" href="/app07/member/login">로그인</a>
+    </li>
+</c:when>
+<c:otherwise>
+ <li class="nav-item">
+      <a class="navbar-brand" href="/app07/member/logout">(${sessionScope.sMember.name})로그아웃</a>
+    </li>
+</c:otherwise>
+</c:choose>
+
+ 
+    
   </ul>
 </div>
 </nav>

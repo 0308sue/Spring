@@ -50,14 +50,20 @@ public class BoardDAOImpl implements BoardDAO{
 
 	@Override
 	public void fileInsert(FileBoardDTO board) {
-		// TODO Auto-generated method stub
+		mapper.fileInsert(board);
 		
 	}
 
 	@Override
 	public List<FileBoardDTO> fileList() {
 		// TODO Auto-generated method stub
-		return null;
+		return mapper.fileList();
+	}
+
+	@Override
+	public void dao_upReadCount(int num) {
+		mapper.upReadCount(num);
+		
 	}
 
 }

@@ -14,6 +14,7 @@ public interface BoardService {
 	public void update(BoardDTO board);
 	public void delete(int num);
 	public int getCount(HashMap<String, Object> hm);
+	public void upReadCount(int num);
 	public void fileInsert(FileBoardDTO board);
 	public List<FileBoardDTO> fileList();
 	

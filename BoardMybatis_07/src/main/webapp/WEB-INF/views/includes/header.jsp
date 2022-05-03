@@ -47,6 +47,9 @@
  <li class="nav-item">
       <a class="navbar-brand" href="/app07/member/logout">(${sessionScope.sMember.name})로그아웃</a>
     </li>
+    <li class="nav-item">
+      <a class="navbar-brand" href="/app07/member/change">회원변경</a>
+    </li>
 </c:otherwise>
 </c:choose>
 

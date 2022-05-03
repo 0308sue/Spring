@@ -3,6 +3,7 @@ package com.board.model;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.board.dto.BoardDTO;
 import com.board.dto.MemberDTO;
 import com.board.mapper.MemberMapper;
 
@@ -24,6 +25,15 @@ private MemberMapper mmapper;
 	@Override
 	public MemberDTO loginCheck(String id) {
 		return mmapper.loginCheck(id);
+	}
+	
+	
+	public void memberupdate(MemberDTO member) {
+		mmapper.memberupdate(member);
+	}
+	
+	public void memberdelete(String id) {
+		mmapper.memberdelete(id);
 	}
 
 }
